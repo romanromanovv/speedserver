@@ -1,0 +1,10 @@
+ookla:
+  image: romanromanovv/speedserver:commit1
+  container_name: ookla-eastera-server
+  environment:
+    - "TZ=Europa/Madrid"
+  ports:
+    - "8080:8080"
+    - "5060:5060"
+    - "80:80"
+  restart: unless-stopped
