@@ -22,6 +22,12 @@ RUN apt-get install -yq --no-install-recommends \
     php7.2-xml \
     php7.2-zip \
     php7.2-intl 
+ # Install tools
+    openssl \
+    nano \
+    iputils-ping \
+    locales
+
 
 RUN wget http://install.speedtest.net/ooklaserver/ooklaserver.sh && \
     chmod a+x ooklaserver.sh && \
