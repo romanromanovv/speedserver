@@ -10,30 +10,20 @@ RUN apt-get update && \
 
 RUN apt-get install -yq --no-install-recommends \
     apt-utils \
+    apache2 \
     libapache2-mod-php7.2 \
-    php7.2-cli \
-    php7.2-json \
-    php7.2-curl \
+    php7.2 \
     php7.2-fpm \
-    php7.2-gd \
-    php7.2-ldap \
-    php7.2-mbstring \
-    php7.2-soap \
-    php7.2-xml \
-    php7.2-zip \
-    php7.2-intl 
- # Install tools
+    # Install tools
     openssl \
     nano \
     iputils-ping \
-    locales
-
+    locales \ 
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN wget http://install.speedtest.net/ooklaserver/ooklaserver.sh && \
     chmod a+x ooklaserver.sh && \
     ./ooklaserver.sh install -f
-
-RUN apt-get install -y apache2
 
 RUN wget https://install.speedtest.net/httplegacy/http_legacy_fallback.zip && \
     unzip http_legacy_fallback.zip -d /var/www/html \
