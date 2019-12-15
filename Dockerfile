@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y wget && \
-    apt-get install -y unzip
+    apt-get install -y unzip git
 
 RUN apt-get install -yq --no-install-recommends \
     apt-utils \
@@ -34,7 +34,9 @@ RUN a2enmod rewrite expires
 RUN echo "ServerName localhost" | tee /etc/apache2/conf-available/servername.conf
 RUN a2enconf servername
 
-COPY startscript.sh startscript.sh
+RUN git clone https://github.com/romanromanovv/speedserver
+RUN cp /speedserver/startscript.sh /opt/Ookla/startscript.sh
+RUN chmod +x /opt/Ookla/startscript.sh
 
 #ENTRYPOINT ["/usr/sbin/apache2", "-k", "start"]
 
@@ -48,6 +50,6 @@ ENV APACHE_LOG_DIR /var/log/apache2
 # Expose the default port
 EXPOSE 8080 5060 80
 
-HEALTHCHECK --interval=5s --timeout=3s --retries=3 CMD curl -f http://localhost || exit 1
+#HEALTHCHECK --interval=5s --timeout=3s --retries=3 CMD curl -f http://localhost || exit 1
 
 CMD ./startscript.sh
