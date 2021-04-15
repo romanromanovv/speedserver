@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   ookla:
-    image: romanromanovv/speedserver:commit3
+    image: romanromanovv/speedserver:commit2
     container_name: ookla-eastera-server
     environment:
       - "TZ=Europa/Madrid"
